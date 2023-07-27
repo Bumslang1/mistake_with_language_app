@@ -35,7 +35,8 @@ class Translater:
         'm':'ь',
         ',':'б',
         '.':'ю',
-        ' ':' '
+        ' ':' ',
+        "'":'э'
     }
         if self.language == 'ru':
             letter_in_list = []
