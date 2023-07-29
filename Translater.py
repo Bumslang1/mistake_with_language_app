@@ -3,7 +3,7 @@ class Translater:
         self.language = language
     
     def translate(self, text):
-        translate_letters_from_us = {
+        translate_letters = {
         'q':'й',
         'w':'ц',
         'e':'у',
@@ -37,12 +37,23 @@ class Translater:
         '.':'ю',
         ' ':' '
     }
+        
         if self.language == 'ru':
             letter_in_list = []
             for i in list(text):
                 if i.isupper():
-                    letter_in_list.append(translate_letters_from_us[i.lower()].upper())
+                    letter_in_list.append(translate_letters[i.lower()].upper())
                 else:
-                    letter_in_list.append(translate_letters_from_us[i])
+                    letter_in_list.append(translate_letters[i])
             ans = ''.join(letter_in_list)
+        else:
+            letter_in_list = []
+            for i in list(text):
+                for key, value in translate_letters.items():
+                    if i.lower() == value and i.isupper():
+                        letter_in_list.append(key.upper())
+                    elif i == value and not i.isupper():
+                        letter_in_list.append(key)
+            ans = ''.join(letter_in_list)
+
         return ans
